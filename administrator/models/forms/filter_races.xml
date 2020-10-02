@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" description="COM_RESULTSDB_SEARCH_FILTER_SUBMIT"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string" />
+
+        <field name="state"
+               type="status"
+               label="COM_RESULTSDB_FILTER_STATE"
+               description="COM_RESULTSDB_FILTER_STATE_DESC"
+               onchange="this.form.submit();"
+        >
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field>
+
+        
+
+    </fields>
+
+    <fields name="list">
+
+        <field name="fullordering"
+               type="list"
+               label="COM_RESULTSDB_LIST_FULL_ORDERING"
+               description="COM_RESULTSDB_LIST_FULL_ORDERING_DESC"
+               onchange="this.form.submit();"
+               default="a.id DESC"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.`ordering` ASC">COM_RESULTSDB_ORDERING_ASC</option><option value="a.`ordering` DESC">COM_RESULTSDB_ORDERING_DESC</option><option value="a.`description` ASC">COM_RESULTSDB_DESCRIPTION_ASC</option><option value="a.`description` DESC">COM_RESULTSDB_DESCRIPTION_DESC</option><option value="a.`date` ASC">COM_RESULTSDB_DATE_ASC</option><option value="a.`date` DESC">COM_RESULTSDB_DATE_DESC</option><option value="a.`runners` ASC">COM_RESULTSDB_RUNNERS_ASC</option><option value="a.`runners` DESC">COM_RESULTSDB_RUNNERS_DESC</option><option value="a.`distance` ASC">COM_RESULTSDB_DISTANCE_ASC</option><option value="a.`distance` DESC">COM_RESULTSDB_DISTANCE_DESC</option><option value="a.`ascent` ASC">COM_RESULTSDB_ASCENT_ASC</option><option value="a.`ascent` DESC">COM_RESULTSDB_ASCENT_DESC</option><option value="a.`race_terrain` ASC">COM_RESULTSDB_RACE_TERRAIN_ASC</option><option value="a.`race_terrain` DESC">COM_RESULTSDB_RACE_TERRAIN_DESC</option><option value="a.`comment` ASC">COM_RESULTSDB_COMMENT_ASC</option><option value="a.`comment` DESC">COM_RESULTSDB_COMMENT_DESC</option>
+
+        </field>
+
+       <field name="limit"
+               type="limitbox"
+               label="COM_RESULTSDB_LIST_LIMIT"
+               description="COM_RESULTSDB_LIST_LIMIT_DESC"
+               class="input-mini"
+               default="25"
+               onchange="this.form.submit();"
+        />
+
+    </fields>
+
+</form>

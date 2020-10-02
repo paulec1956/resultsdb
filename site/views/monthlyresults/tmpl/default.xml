@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_RESULTSDB_TITLE_LIST_VIEW_MONTHLYRESULTS" option="View">
+        <message>
+                        <![CDATA[COM_RESULTSDB_TITLE_LIST_VIEW_MONTHLYRESULTS_DESC]]>
+        </message>
+	</layout>
+	
+</metadata>

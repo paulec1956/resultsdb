@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="raceid" type="foreignkey" label="COM_RESULTSDB_FORM_LBL_RESULT_RACEID" description="COM_RESULTSDB_FORM_DESC_RESULT_RACEID" class="inputbox" input_type="list" table="#__resultsdb_races" key_field="id" value_field="description" required="true" default=""/>
+    <field name="date" class="inputbox" format="%Y-%m-%d" timeformat="12" filter="server_utc" translateformat="false" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" required="true" label="COM_RESULTSDB_FORM_LBL_RESULT_DATE" description="COM_RESULTSDB_FORM_DESC_RESULT_DATE" hint="COM_RESULTSDB_FORM_LBL_RESULT_DATE"/>
+    <field name="runner" type="foreignkey" label="COM_RESULTSDB_FORM_LBL_RESULT_RUNNER" description="COM_RESULTSDB_FORM_DESC_RESULT_RUNNER" class="inputbox" input_type="list" table="#__resultsdb_runners" key_field="id" value_multiple="1" value_field_multiple="firstname,surname" value_field="fk_value" separator=" " multiple="multiple" required="true" default=""/>
+    <field name="position" label="COM_RESULTSDB_FORM_LBL_RESULT_POSITION" description="COM_RESULTSDB_FORM_DESC_RESULT_POSITION" hint="COM_RESULTSDB_FORM_LBL_RESULT_POSITION"/>
+    <field name="time" label="COM_RESULTSDB_FORM_LBL_RESULT_TIME" description="COM_RESULTSDB_FORM_DESC_RESULT_TIME" hint="COM_RESULTSDB_FORM_LBL_RESULT_TIME"/>
+    <field name="agegrade" label="COM_RESULTSDB_FORM_LBL_RESULT_AGEGRADE" description="COM_RESULTSDB_FORM_DESC_RESULT_AGEGRADE" hint="COM_RESULTSDB_FORM_LBL_RESULT_AGEGRADE"/>
+    <field name="pb" label="COM_RESULTSDB_FORM_LBL_RESULT_PB" description="COM_RESULTSDB_FORM_DESC_RESULT_PB" hint="COM_RESULTSDB_FORM_LBL_RESULT_PB"/>
+    <field name="agecat" label="COM_RESULTSDB_FORM_LBL_RESULT_AGECAT" description="COM_RESULTSDB_FORM_DESC_RESULT_AGECAT" hint="COM_RESULTSDB_FORM_LBL_RESULT_AGECAT"/>
+    <field name="catposition" label="COM_RESULTSDB_FORM_LBL_RESULT_CATPOSITION" description="COM_RESULTSDB_FORM_DESC_RESULT_CATPOSITION" hint="COM_RESULTSDB_FORM_LBL_RESULT_CATPOSITION"/>
+    <field name="comment" filter="safehtml" type="text" label="COM_RESULTSDB_FORM_LBL_RESULT_COMMENT" description="COM_RESULTSDB_FORM_DESC_RESULT_COMMENT" hint="COM_RESULTSDB_FORM_LBL_RESULT_COMMENT"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>

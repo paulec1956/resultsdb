@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" description="COM_RESULTSDB_SEARCH_FILTER_SUBMIT"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string" />
+
+        <field name="state"
+               type="status"
+               label="COM_RESULTSDB_FILTER_STATE"
+               description="COM_RESULTSDB_FILTER_STATE_DESC"
+               onchange="this.form.submit();"
+        >
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field>
+
+        <field name="runner" type="sql" label="COM_RESULTSDB_FORM_LBL_RESULT_RUNNER" query="SELECT '' AS `id`, 'COM_RESULTSDB_RESULTS_RUNNER_FILTER' AS `val` UNION SELECT `id` AS `id`,  CONCAT(`firstname`, ' ', `surname`) AS val FROM `#__resultsdb_runners`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+
+
+    </fields>
+
+    <fields name="list">
+
+        <field name="fullordering"
+               type="list"
+               label="COM_RESULTSDB_LIST_FULL_ORDERING"
+               description="COM_RESULTSDB_LIST_FULL_ORDERING_DESC"
+               onchange="this.form.submit();"
+               default="a.id DESC"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.`ordering` ASC">COM_RESULTSDB_ORDERING_ASC</option><option value="a.`ordering` DESC">COM_RESULTSDB_ORDERING_DESC</option><option value="a.`raceid` ASC">COM_RESULTSDB_RACEID_ASC</option><option value="a.`raceid` DESC">COM_RESULTSDB_RACEID_DESC</option><option value="a.`date` ASC">COM_RESULTSDB_DATE_ASC</option><option value="a.`date` DESC">COM_RESULTSDB_DATE_DESC</option><option value="a.`runner` ASC">COM_RESULTSDB_RUNNER_ASC</option><option value="a.`runner` DESC">COM_RESULTSDB_RUNNER_DESC</option><option value="a.`position` ASC">COM_RESULTSDB_POSITION_ASC</option><option value="a.`position` DESC">COM_RESULTSDB_POSITION_DESC</option><option value="a.`time` ASC">COM_RESULTSDB_TIME_ASC</option><option value="a.`time` DESC">COM_RESULTSDB_TIME_DESC</option><option value="a.`pb` ASC">COM_RESULTSDB_PB_ASC</option><option value="a.`pb` DESC">COM_RESULTSDB_PB_DESC</option><option value="a.`agecat` ASC">COM_RESULTSDB_AGECAT_ASC</option><option value="a.`agecat` DESC">COM_RESULTSDB_AGECAT_DESC</option><option value="a.`catposition` ASC">COM_RESULTSDB_CATPOSITION_ASC</option><option value="a.`catposition` DESC">COM_RESULTSDB_CATPOSITION_DESC</option><option value="a.`comment` ASC">COM_RESULTSDB_COMMENT_ASC</option><option value="a.`comment` DESC">COM_RESULTSDB_COMMENT_DESC</option>
+
+        </field>
+
+       <field name="limit"
+               type="limitbox"
+               label="COM_RESULTSDB_LIST_LIMIT"
+               description="COM_RESULTSDB_LIST_LIMIT_DESC"
+               class="input-mini"
+               default="25"
+               onchange="this.form.submit();"
+        />
+
+    </fields>
+
+</form>

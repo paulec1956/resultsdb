@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" method="upgrade" client="site">
+    <name>MOD_RESULTSDB_NAME</name>
+    <creationDate>2020-07-04</creationDate>
+    <copyright>2020 Paul Crean</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <author>Paul Crean</author>
+    <authorEmail>pecrean@gmail.com</authorEmail>
+    <authorUrl>http://</authorUrl>
+    <version>CVS: 1.1.35</version>
+    <description>MOD_RESULTSDB_DESCRIPTION</description>
+    
+    <files>
+        <filename module="mod_resultsdb">mod_resultsdb.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+    <languages folder="language">
+        
+			<language tag="en-GB">en-GB/en-GB.mod_resultsdb.ini</language>
+			<language tag="en-GB">en-GB/en-GB.mod_resultsdb.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset 
+                name="content_type" 
+                label="MOD_RESULTSDB_CONTENT_TYPE_TAB_LBL"
+                description="MOD_RESULTSDB_CONTENT_TYPE_TAB_DESC">
+                <field
+                    name="content_type" type="list"
+                    label="MOD_RESULTSDB_CONTENT_TYPE_LBL"
+                    description="MOD_RESULTSDB_CONTENT_TYPE_DESC">
+                    <option value="blank">MOD_RESULTSDB_CUSTOM_CONTENT</option>
+                    <option value="list">MOD_RESULTSDB_LIST</option>
+                    <option value="item">MOD_RESULTSDB_ITEM</option>
+                </field>
+            </fieldset>
+            <fieldset 
+                name="blank_content" 
+                label="MOD_RESULTSDB_CUSTOM_CONTENT_TAB_LBL"
+                description="MOD_RESULTSDB_CUSTOM_CONTENT_TAB_DESC">
+                <field 
+                    name="html_content" type="editor" filter="safehtml"
+                    label="MOD_RESULTSDB_HTML_LBL"
+                    description="MOD_RESULTSDB_HTML_DESC" />
+            </fieldset>
+            <fieldset 
+                name="list_content" 
+                label="MOD_RESULTSDB_LIST_CONTENT_TAB_LBL"
+                description="MOD_RESULTSDB_LIST_CONTENT_TAB_DESC">
+                <field
+                    name="table" type="list"
+                    label="MOD_RESULTSDB_TABLE_LBL"
+                    description="MOD_RESULTSDB_TABLE_DESC">
+                    
+	<option value="#__resultsdb_races">#__resultsdb_races</option>
+	<option value="#__resultsdb_runners">#__resultsdb_runners</option>
+	<option value="#__resultsdb_results">#__resultsdb_results</option>
+                </field>
+                <field 
+                    name="field" type="groupedlist" default=""
+                    label="MOD_RESULTSDB_FIELD_LBL"
+                    description="MOD_RESULTSDB_FIELD_DESC">
+                    
+	<group label="#__resultsdb_races">
+		<option value="#__resultsdb_races:id">id</option>
+		<option value="#__resultsdb_races:created_by">created_by</option>
+		<option value="#__resultsdb_races:modified_by">modified_by</option>
+		<option value="#__resultsdb_races:description">description</option>
+		<option value="#__resultsdb_races:additional_info">additional_info</option>
+		<option value="#__resultsdb_races:date">date</option>
+		<option value="#__resultsdb_races:runners">runners</option>
+		<option value="#__resultsdb_races:distance">distance</option>
+		<option value="#__resultsdb_races:ascent">ascent</option>
+		<option value="#__resultsdb_races:race_terrain">race_terrain</option>
+		<option value="#__resultsdb_races:comment">comment</option>
+	</group>
+	<group label="#__resultsdb_runners">
+		<option value="#__resultsdb_runners:id">id</option>
+		<option value="#__resultsdb_runners:created_by">created_by</option>
+		<option value="#__resultsdb_runners:modified_by">modified_by</option>
+		<option value="#__resultsdb_runners:urn">urn</option>
+		<option value="#__resultsdb_runners:firstname">firstname</option>
+		<option value="#__resultsdb_runners:surname">surname</option>
+		<option value="#__resultsdb_runners:gender">gender</option>
+		<option value="#__resultsdb_runners:claim">claim</option>
+		<option value="#__resultsdb_runners:dob">dob</option>
+		<option value="#__resultsdb_runners:membership">membership</option>
+		<option value="#__resultsdb_runners:alias">alias</option>
+		<option value="#__resultsdb_runners:comment">comment</option>
+	</group>
+	<group label="#__resultsdb_results">
+		<option value="#__resultsdb_results:id">id</option>
+		<option value="#__resultsdb_results:created_by">created_by</option>
+		<option value="#__resultsdb_results:modified_by">modified_by</option>
+		<option value="#__resultsdb_results:raceid">raceid</option>
+		<option value="#__resultsdb_results:date">date</option>
+		<option value="#__resultsdb_results:runner">runner</option>
+		<option value="#__resultsdb_results:position">position</option>
+		<option value="#__resultsdb_results:time">time</option>
+		<option value="#__resultsdb_results:agegrade">agegrade</option>
+		<option value="#__resultsdb_results:pb">pb</option>
+		<option value="#__resultsdb_results:agecat">agecat</option>
+		<option value="#__resultsdb_results:catposition">catposition</option>
+		<option value="#__resultsdb_results:comment">comment</option>
+	</group>
+                </field>
+                <field 
+                    name="offset" type="text" default="0" filter="uint" class="input-small"
+                    label="MOD_RESULTSDB_OFFSET_LBL"
+                    description="MOD_RESULTSDB_OFFSET_DESC" />
+                <field 
+                    name="limit" type="text" default="10" filter="uint" class="input-small"
+                    label="MOD_RESULTSDB_LIMIT_LBL"
+                    description="MOD_RESULTSDB_LIMIT_DESC" />
+            </fieldset>
+            <fieldset 
+                name="item_content" 
+                label="MOD_RESULTSDB_ITEM_CONTENT_TAB"
+                description="MOD_RESULTSDB_ITEM_CONTENT_TAB_DESC">
+                <field
+                    name="item_table" type="list"
+                    label="MOD_RESULTSDB_TABLE_LBL"
+                    description="MOD_RESULTSDB_TABLE_DESC">
+                    
+	<option value="#__resultsdb_races">#__resultsdb_races</option>
+	<option value="#__resultsdb_runners">#__resultsdb_runners</option>
+	<option value="#__resultsdb_results">#__resultsdb_results</option>
+                </field>
+                <field 
+                    name="item_id" type="text" filter="uint" class="input-small"
+                    label="MOD_RESULTSDB_ITEM_ID_LBL"
+                    description="MOD_RESULTSDB_ITEM_ID_DESC"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

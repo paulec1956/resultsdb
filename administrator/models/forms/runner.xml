@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" default="0000-00-00 00:00:00" type="hidden" filter="unset"/>
+    <field name="created_by" type="createdby" default="0" label="COM_RESULTSDB_FORM_LBL_RUNNER_CREATED_BY" description="COM_RESULTSDB_FORM_DESC_RUNNER_CREATED_BY" hidden="true" hint="COM_RESULTSDB_FORM_LBL_RUNNER_CREATED_BY"/>
+    <field name="modified_by" type="modifiedby" default="0" label="COM_RESULTSDB_FORM_LBL_RUNNER_MODIFIED_BY" description="COM_RESULTSDB_FORM_DESC_RUNNER_MODIFIED_BY" hidden="true" hint="COM_RESULTSDB_FORM_LBL_RUNNER_MODIFIED_BY"/>
+    <field name="urn" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_URN" description="COM_RESULTSDB_FORM_DESC_RUNNER_URN" hint="COM_RESULTSDB_FORM_LBL_RUNNER_URN"/>
+    <field name="firstname" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_FIRSTNAME" description="COM_RESULTSDB_FORM_DESC_RUNNER_FIRSTNAME" hint="COM_RESULTSDB_FORM_LBL_RUNNER_FIRSTNAME"/>
+    <field name="surname" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_SURNAME" description="COM_RESULTSDB_FORM_DESC_RUNNER_SURNAME" hint="COM_RESULTSDB_FORM_LBL_RUNNER_SURNAME"/>
+    <field name="gender" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_GENDER" description="COM_RESULTSDB_FORM_DESC_RUNNER_GENDER" hint="COM_RESULTSDB_FORM_LBL_RUNNER_GENDER"/>
+    <field name="claim" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_CLAIM" description="COM_RESULTSDB_FORM_DESC_RUNNER_CLAIM" hint="COM_RESULTSDB_FORM_LBL_RUNNER_CLAIM"/>
+    <field name="dob" type="calendar" class="inputbox" filter="safehtml" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_DOB" description="COM_RESULTSDB_FORM_DESC_RUNNER_DOB" hint="COM_RESULTSDB_FORM_LBL_RUNNER_DOB"/>
+    <field name="membership" required="true" label="COM_RESULTSDB_FORM_LBL_RUNNER_MEMBERSHIP" description="COM_RESULTSDB_FORM_DESC_RUNNER_MEMBERSHIP" hint="COM_RESULTSDB_FORM_LBL_RUNNER_MEMBERSHIP"/>
+    <field name="alias" filter="safehtml" type="text" label="COM_RESULTSDB_FORM_LBL_RUNNER_ALIAS" description="COM_RESULTSDB_FORM_DESC_RUNNER_ALIAS" hint="COM_RESULTSDB_FORM_LBL_RUNNER_ALIAS"/>
+    <field name="comment" filter="safehtml" type="text" label="COM_RESULTSDB_FORM_LBL_RUNNER_COMMENT" description="COM_RESULTSDB_FORM_DESC_RUNNER_COMMENT" hint="COM_RESULTSDB_FORM_LBL_RUNNER_COMMENT"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>

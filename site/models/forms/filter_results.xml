@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field name="search" type="text" hint="COM_RESULTSDB_SEARCH_FILTER_SUBMIT"
+               label="COM_USERS_FILTER_SEARCH_DESC"
+               class="js-stools-search-string" />
+
+        <field name="runner" type="sql" label="COM_RESULTSDB_FORM_LBL_RESULT_RUNNER" query="SELECT '' AS `id`, 'COM_RESULTSDB_RESULTS_RUNNER_FILTER' AS `val` UNION SELECT `id` AS `id`,  CONCAT(`firstname`, ' ', `surname`) AS val FROM `#__resultsdb_runners`" key_field="id" value_field="val" class="inputbox" onchange="this.form.submit()" translate="true"/>
+
+
+    </fields>
+</form>

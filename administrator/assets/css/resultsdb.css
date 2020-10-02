@@ -1,0 +1,44 @@
+.icon-48-races {
+      background-image: url(../images/l_races.png);
+      padding-left:60px!important;
+}
+
+.icon-48-race {
+      background-image: url(../images/l_races.png);
+      padding-left:60px!important;
+}
+
+.color-box-races { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-runners {
+      background-image: url(../images/l_runners.png);
+      padding-left:60px!important;
+}
+
+.icon-48-runner {
+      background-image: url(../images/l_runners.png);
+      padding-left:60px!important;
+}
+
+.color-box-runners { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+.icon-48-results {
+      background-image: url(../images/l_results.png);
+      padding-left:60px!important;
+}
+
+.icon-48-result {
+      background-image: url(../images/l_results.png);
+      padding-left:60px!important;
+}
+
+.color-box-results { 
+      float: left;      width: 15px;      height: 15px;      margin-right: 5px;      border: 1px solid rgba(0, 0, 0, .2);}
+
+
+
+.other-filters{
+    padding: 0 14px;
+}

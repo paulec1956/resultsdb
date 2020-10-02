@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_RESULTSDB_TITLE_LIST_VIEW_RUNNERS" option="View">
+        <message>
+                        <![CDATA[COM_RESULTSDB_TITLE_LIST_VIEW_RUNNERS_DESC]]>
+        </message>
+	</layout>
+	
+</metadata>

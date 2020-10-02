@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+  <fieldset>
+    <field name="id" type="text" readonly="true" class="readonly" default="0" description="JGLOBAL_FIELD_ID_DESC"/>
+    <field name="ordering"/>
+    <field name="state" default="1" type="list" label="JSTATUS" description="JFIELD_PUBLISHED_DESC" class="inputbox" size="1">
+      <option value="1">JPUBLISHED</option>
+      <option value="0">JUNPUBLISHED</option>
+      <option value="2">JARCHIVED</option>
+      <option value="-2">JTRASHED</option>
+    </field>
+    <field name="checked_out" type="hidden" filter="unset"/>
+    <field name="checked_out_time" type="hidden" filter="unset"/>
+    <field name="created_by" type="createdby" default="0" label="COM_RESULTSDB_FORM_LBL_RACE_CREATED_BY" description="COM_RESULTSDB_FORM_DESC_RACE_CREATED_BY" hidden="true" hint="COM_RESULTSDB_FORM_LBL_RACE_CREATED_BY"/>
+    <field name="modified_by" type="modifiedby" default="0" label="COM_RESULTSDB_FORM_LBL_RACE_MODIFIED_BY" description="COM_RESULTSDB_FORM_DESC_RACE_MODIFIED_BY" hidden="true" hint="COM_RESULTSDB_FORM_LBL_RACE_MODIFIED_BY"/>
+    <field name="description" required="true" label="COM_RESULTSDB_FORM_LBL_RACE_DESCRIPTION" description="COM_RESULTSDB_FORM_DESC_RACE_DESCRIPTION" hint="COM_RESULTSDB_FORM_LBL_RACE_DESCRIPTION"/>
+    <field name="additional_info" label="COM_RESULTSDB_FORM_LBL_RACE_ADDITIONAL_INFO" description="COM_RESULTSDB_FORM_DESC_RACE_ADDITIONAL_INFO" hint="COM_RESULTSDB_FORM_LBL_RACE_ADDITIONAL_INFO"/>
+    <field name="date" class="inputbox" format="%Y-%m-%d" timeformat="12" filter="server_utc" translateformat="false" showtime="false" singleheader="false" todaybutton="false" weeknumbers="false" filltable="false" type="calendar" required="true" label="COM_RESULTSDB_FORM_LBL_RACE_DATE" description="COM_RESULTSDB_FORM_DESC_RACE_DATE" hint="COM_RESULTSDB_FORM_LBL_RACE_DATE"/>
+    <field name="runners" label="COM_RESULTSDB_FORM_LBL_RACE_RUNNERS" description="COM_RESULTSDB_FORM_DESC_RACE_RUNNERS" hint="COM_RESULTSDB_FORM_LBL_RACE_RUNNERS"/>
+    <field name="distance" label="COM_RESULTSDB_FORM_LBL_RACE_DISTANCE" description="COM_RESULTSDB_FORM_DESC_RACE_DISTANCE" hint="COM_RESULTSDB_FORM_LBL_RACE_DISTANCE"/>
+    <field name="ascent" label="COM_RESULTSDB_FORM_LBL_RACE_ASCENT" description="COM_RESULTSDB_FORM_DESC_RACE_ASCENT" hint="COM_RESULTSDB_FORM_LBL_RACE_ASCENT"/>
+    <field name="race_terrain" default="  " filter="safehtml" type="text" label="COM_RESULTSDB_FORM_LBL_RACE_RACE_TERRAIN" description="COM_RESULTSDB_FORM_DESC_RACE_RACE_TERRAIN" hint="COM_RESULTSDB_FORM_LBL_RACE_RACE_TERRAIN"/>
+    <field name="comment" label="COM_RESULTSDB_FORM_LBL_RACE_COMMENT" description="COM_RESULTSDB_FORM_DESC_RACE_COMMENT" hint="COM_RESULTSDB_FORM_LBL_RACE_COMMENT"/>
+    <field name="version_note" type="text" label="JGLOBAL_FIELD_VERSION_NOTE_LABEL" description="JGLOBAL_FIELD_VERSION_NOTE_DESC" class="inputbox" size="45" labelclass="control-label"/>
+  </fieldset>
+</form>
