@@ -139,6 +139,9 @@ class ResultsdbViewRaces extends \Joomla\CMS\MVC\View\HtmlView
 			JToolBarHelper::preferences('com_resultsdb');
 		}
 
+		// Help button:
+		JToolbarHelper::help( 'COM_RESULTSDB_HELP_RACES_VIEW_TYPE', true );
+		
 		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_resultsdb&view=races');
 	}

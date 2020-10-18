@@ -1,11 +1,12 @@
 <?php
 
 /**
- * @version    CVS: 1.1.35
+ * @version    CVS: 1.1.42
  * @package    Com_Resultsdb
  * @author     Paul Crean <pecrean@gmail.com>
  * @copyright  2020 Paul Crean
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * 051020 V1.1.42 Added Help toolbar call 
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -141,6 +142,9 @@ class ResultsdbViewResults extends \Joomla\CMS\MVC\View\HtmlView
 
 		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_resultsdb&view=results');
+		
+		// Help button:
+		JToolbarHelper::help( 'COM_RESULTSDB_HELP_VIEW_TYPE', true );
 	}
 
 	/**

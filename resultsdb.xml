@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_resultsdb</name>
-    <creationDate>2020-09-30</creationDate>
+    <creationDate>2020-10-05</creationDate>
     <copyright>2020 Paul Crean</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <author>Paul Crean</author>
     <authorEmail>pecrean@gmail.com</authorEmail>
     <authorUrl>http://</authorUrl>
-    <version>CVS: 1.1.41</version>
+    <version>CVS: 1.1.42</version>
     <description>COM_RESULTSDB_XML_DESCRIPTION</description>
     
     <scriptfile>script.php</scriptfile>
@@ -67,6 +67,7 @@
             <filename>resultsdb.php</filename>
             <folder>controllers</folder>
             <folder>assets</folder>
+            <folder>help</folder>
             <folder>helpers</folder>
             <folder>models</folder>
             <folder>sql</folder>
