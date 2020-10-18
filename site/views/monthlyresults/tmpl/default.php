@@ -45,11 +45,11 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 <p style="text-align: center;"> 
   <span style="font-size: 18pt;">
     <strong>
-      <span style="font-family: helvetica; ">Monthly Results - select month you want to see in the search box</span>
+      <span style="font-family: helvetica; ">Monthly Results - click Search Tools and select the year and month you want to see in the dropdowns</span>
 	</strong>
  </span>
 </p>
-<p> Enter month in search box in format yyyy-mm e.g. 2020-02</p>
+
 <?php echo JLayoutHelper::render('default_filter', array('view' => $this), dirname(__FILE__)); ?>
 	
 		<?php 

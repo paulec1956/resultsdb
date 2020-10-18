@@ -224,7 +224,7 @@ class ResultsdbModelMonthlyresults extends \Joomla\CMS\MVC\Model\ListModel
 	    }
 	    */
 	    $search=$year . "-" . $month;
-	    //JFactory::getApplication()->enqueueMessage(JText::_($search), 'search');
+	    JFactory::getApplication()->enqueueMessage(JText::_($search), 'search');
 	    $db    = JFactory::getDbo();
 	    $query = $db->getQuery(true);
 	    //$query=$this->getListQuery();
@@ -246,7 +246,7 @@ class ResultsdbModelMonthlyresults extends \Joomla\CMS\MVC\Model\ListModel
 	    $query->select('CONCAT(`#__resultsdb_runners_3445522`.`firstname`, \' \', `#__resultsdb_runners_3445522`.`surname`) AS runners_fk_value_3445522');
 	    $query->join('LEFT', '#__resultsdb_runners AS #__resultsdb_runners_3445522 ON #__resultsdb_runners_3445522.`id` = a.`runner`');
 		$query->where('a.state = 1'); // added 300920
-	    $query->where ('`a`.`date`' . 'LIKE ' . $query->quote($search . "%"));
+	    $query->where ('`a`.`date`' . 'LIKE ' . $query->quote($month . "%"));
 	    
 	    //->from($db->quotename(MONTH('#__resultsdb_results')))
 	    //->limit($db->quote('100'));
