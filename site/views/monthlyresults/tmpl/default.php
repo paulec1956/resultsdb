@@ -1,14 +1,15 @@
 <?php
 /**
- * @version    CVS: 1.1.40
+ * @version    CVS: 1.1.45
  * @package    Com_Resultsdb
  * @author     Paul Crean <pecrean@gmail.com>
  * @copyright  2020 Paul Crean
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  * 13/06/20:  copied from Results view template file to start with.
- * 02/07/20 v1.1.31 change column headings for handicap races 
+ * 02/07/20 v1.1.31 change column headings for handicap races
  * * 07/07/20 fixed issue with final race in month
  * 23/09/20  Added Hobble to handicap races change in column headings
+ * 25/01/21 PB added to view
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -42,35 +43,44 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 
 <form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post"
       name="adminForm" id="adminForm">
-<p style="text-align: center;"> 
+<p style="text-align: center;">
   <span style="font-size: 18pt;">
     <strong>
-      <span style="font-family: helvetica; ">Monthly Results - click Search Tools and select the year and month you want to see in the dropdowns</span>
+      <span style="font-family: helvetica; ">Results for one Month: </span>
 	</strong>
  </span>
 </p>
-
+<p>
+  <span style="font-size: 14pt;">
+     <span style="font-family: helvetica; ">Enter a month and year in the search box (yyyy-mm) OR </span>
+ </span>
+</p>
+<p>
+  <span style="font-size: 14pt;">
+     <span style="font-family: helvetica; ">Click Search Tools and select the year and month you want to see in the dropdowns</span>
+ </span>
+</p>
 <?php echo JLayoutHelper::render('default_filter', array('view' => $this), dirname(__FILE__)); ?>
-	
-		<?php 
+
+		<?php
 		$res=count ($this->$items);
 		$msg = "View number of items read" . $res;
 		//echo $msg;
 		//JFactory::getApplication()->enqueueMessage(JText::_($msg), 'Layout database calls');
 		$thisrace= " ";
 		$numresult=0;?>
-		
+
 		<?php
-		foreach ($this->items as $i => $item) 
+		foreach ($this->items as $i => $item)
 		{  // Read all results as objects  - $item
 		    //var_dump($item);
 			 $canEdit = $user->authorise('core.edit', 'com_resultsdb'); ?>
 			 <?php if ($thisrace != $item->raceid) // Is this a new race?
-            { 
+            {
 				//JFactory::getApplication()->enqueueMessage(JText::_($item->raceid), 'New race');
-                if ($thisrace != " ") 
+                if ($thisrace != " ")
                 { // last race results all captured and ready to display
-                    
+
                     display_race_results ($results);
                 }
                 // initialise for next race
@@ -78,13 +88,13 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
                 $numresult=0; //reset result counter for array in race
                 $thisrace = $item-> raceid; // Store current race name
             }
-        
+
         $results [$numresult++] = get_object_vars($item); // convert object to array and add to results array
 		}
 		// display last race results
 		display_race_results ($results);
-            
-	function display_race_results ($results) 
+
+	function display_race_results ($results)
 	{
 	    $thisrace= $results[0]['raceid'];
 	    $date=date_create ($results[0]['date'], timezone_open("Europe/Oslo"));
@@ -92,11 +102,11 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 	    $thismonth=date_format($date, "F Y");
 		$racename= $thisdate . " - " . $thisrace;
 		$i=0;
-		if (preg_match ("/HANDICAP/", strtoupper("$thisrace"), $matches) OR 
+		if (preg_match ("/HANDICAP/", strtoupper("$thisrace"), $matches) OR
 		preg_match ("/HOBBLE/", strtoupper("$thisrace"), $matches))
             $handicap=true;
 		?>
-	  <div class="table-responsive">  
+	  <div class="table-responsive">
 	    <h3><?php echo $racename; // display race title and date ?>
         </h3>
 	   <table class="table " id="resultList">
@@ -110,23 +120,26 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 			<th class=''>
 			<?php  echo JText::_('COM_RESULTSDB_RESULTS_TIME'); ?>
 			</th>
+      <th class=''>
+			<?php  echo JText::_('COM_RESULTSDB_RESULTS_PB'); ?>
+			</th>
 			<th class=''>
-			<?php if ($handicap) 
+			<?php if ($handicap)
 			    echo JText::_('Delay');
-			else 
+			else
 			    echo JText::_('COM_RESULTSDB_RESULTS_AGECAT'); ?>
 			</th>
 			<th class=''>
-			<?php if ($handicap) 
+			<?php if ($handicap)
 			    echo JText::_('Actual Time');
-			else 
+			else
 			    echo JText::_('COM_RESULTSDB_RESULTS_CATPOSITION'); ?>
 			</th>
 			<th class=''>
 			<?php echo JText::_('COM_RESULTSDB_RESULTS_COMMENT'); ?>
     		</th>
-        
-		<?php foreach ($results as $result) 
+
+		<?php foreach ($results as $result)
 		{ ?>
 			<tr class="row<?php echo $i++ % 2; ?>">
 			<td>
@@ -138,6 +151,9 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 			<td>
 				<?php echo $result['time']; ?>
 			</td>
+      <td>
+				<?php echo $result['pb']; ?>
+			</td>
 			<td>
 				<?php echo $result['agecat']; ?>
 			</td>
@@ -148,12 +164,12 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 				<?php echo $result['comment']; ?>
 			</td>
 		</tr>
-		
+
  <?php  } // end foreach ?>
      </tbody>
      </table>
      </div>
-	
+
 <?php } //end of function display race results ?>
 
 <?php if($canDelete) : ?>

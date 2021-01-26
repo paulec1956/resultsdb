@@ -1,10 +1,11 @@
 <?php
 /**
- * @version    CVS: 1.1.35
+ * @version    CVS: 1.1.45
  * @package    Com_Resultsdb
  * @author     Paul Crean <pecrean@gmail.com>
  * @copyright  2020 Paul Crean
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
+  * PB display added 250121
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -37,21 +38,21 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 
 <form action="<?php echo htmlspecialchars(Uri::getInstance()->toString()); ?>" method="post"
       name="adminForm" id="adminForm">
-<p style="text-align: center;"> 
+<p style="text-align: center;">
   <span style="font-size: 18pt;">
     <strong>
       <span style="font-family: helvetica; ">Full list of Historical Club Results:</span>
 	</strong>
 </span>
 </p>
-<p> Use the Search Tools to filter by name and Search box to look for races</p>		
+<p> Use the Search Tools to filter by name and Search box to look for races</p>
 	<?php echo JLayoutHelper::render('default_filter', array('view' => $this), dirname(__FILE__)); ?>
         <div class="table-responsive">
 	<table class="table " id="resultList">
 		<thead>
 		<tr>
 			<?php if (isset($this->items[0]->state)): ?>
-				
+
 			<?php endif; ?>
 
 							<th class=''>
@@ -68,6 +69,9 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 				</th>
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_TIME', 'a.time', $listDirn, $listOrder); ?>
+				</th>
+        <th class=''>
+				<?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_PB', 'a.pb', $listDirn, $listOrder); ?>
 				</th>
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_AGECAT', 'a.agecat', $listDirn, $listOrder); ?>
@@ -107,7 +111,7 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 
 				<?php if (isset($this->items[0]->state)) : ?>
 					<?php $class = ($canChange) ? 'active' : 'disabled'; ?>
-					
+
 				<?php endif; ?>
 
 								<td>
@@ -134,6 +138,10 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 				<?php endif; ?>
 				<a href="<?php echo JRoute::_('index.php?option=com_resultsdb&view=result&id='.(int) $item->id); ?>">
 				<?php echo $this->escape($item->time); ?></a>
+				</td>
+        <td>
+
+					<?php echo $item->pb; ?>
 				</td>
 				<td>
 

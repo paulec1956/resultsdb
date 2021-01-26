@@ -8,6 +8,8 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  * changed date column - no longer FK
  * Changed 300920 to add where state = 1 to query in get_items to exclude trashed records
+ * 1.1.43 181020 Use drop down month and year selecions not search box
+ * 1.1.44 221020 Using drop down selection of month and year as well as search box
  */
 
 defined('_JEXEC') or die;
@@ -208,22 +210,36 @@ class ResultsdbModelMonthlyresults extends \Joomla\CMS\MVC\Model\ListModel
 	{
 	    //$items = parent::getItems();
 	    //JFactory::getApplication()->enqueueMessage(JText::_('Call getListQuery'), 'error');
-	    // Get year and month from user selections on the page
-	    $month = $this->getState('filter.month');
-	    if (empty($month)) // set default month
-	    {
-	        $month='10';
-	    }
+	    /* 
+	     * Get year and month from user dropdown selections on the page
+	     */
+	    $month = $this->getState('filter.month'); 
 	    $year = $this->getState('filter.year');
-	    if (empty($year)) // set default month
-	    {
-	        $year='2020';
-	    }
-	    /*if(!preg_match("/\d{4}-\d{2}/", $search, $match)) {
-	        JFactory::getApplication()->enqueueMessage(JText::_('Please enter seach month in format yyyy-mm'), 'search error');
-	    }
+	    /*
+	     * Get entry from search box
 	    */
-	    $search=$year . "-" . $month;
+	    $boxsearch = $this->getState('filter.search');
+	    if (!empty($boxsearch))  //check format of entry in search box if there is one 
+	    {
+    	    if(!preg_match("/\d{4}-\d{2}/", $boxsearch, $match)) {
+    	        JFactory::getApplication()->enqueueMessage(JText::_('Please enter seach month in format yyyy-mm'), 'search error');
+    	    }
+    	}
+	    
+	    if (!empty($month) && !empty($year)) // set search based on dropdowns
+	    {
+	        $search=$year . "-" . $month;
+	    }
+	    elseif (empty ($boxsearch)) // no dropdown selections
+	       {
+	           // no search box selection. Set default
+	           $search='2020-09';
+	       }
+	       else 
+	       {
+	           $search=$boxsearch;
+	       }
+	             
 	    //JFactory::getApplication()->enqueueMessage(JText::_($search), 'search');
 	    $db    = JFactory::getDbo();
 	    $query = $db->getQuery(true);

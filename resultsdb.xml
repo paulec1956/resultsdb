@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_resultsdb</name>
-    <creationDate>2020-10-18</creationDate>
+    <creationDate>2020-10-22</creationDate>
     <copyright>2020 Paul Crean</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <author>Paul Crean</author>
     <authorEmail>pecrean@gmail.com</authorEmail>
     <authorUrl>http://</authorUrl>
-    <version>CVS: 1.1.43</version>
+    <version>CVS: 1.1.45</version>
     <description>COM_RESULTSDB_XML_DESCRIPTION</description>
-    
+
     <scriptfile>script.php</scriptfile>
-    
+
     <install> <!-- Runs on install -->
         <sql>
             <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
@@ -43,13 +43,13 @@
         <folder>css</folder>
     </media>
     <languages folder="site/languages">
-        
+
 			<language tag="en-GB">en-GB/en-GB.com_resultsdb.ini</language>
     </languages>
     <administration>
         <menu>COM_RESULTSDB</menu>
         <submenu>
-            
+
 			<menu link="option=com_resultsdb&amp;view=races" view="races" alt="Resultsdb/Races">COM_RESULTSDB_TITLE_RACES</menu>
 
 			<menu link="option=com_resultsdb&amp;view=runners" view="runners" alt="Resultsdb/Runners">COM_RESULTSDB_TITLE_RUNNERS</menu>
@@ -75,7 +75,7 @@
             <folder>views</folder>
         </files>
         <languages folder="administrator/languages">
-            
+
 			<language tag="en-GB">en-GB/en-GB.com_resultsdb.ini</language>
 			<language tag="en-GB">en-GB/en-GB.com_resultsdb.sys.ini</language>
         </languages>
