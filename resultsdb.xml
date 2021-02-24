@@ -7,7 +7,7 @@
     <author>Paul Crean</author>
     <authorEmail>pecrean@gmail.com</authorEmail>
     <authorUrl>http://</authorUrl>
-    <version>CVS: 1.1.46</version>
+    <version>CVS: 1.1.47</version>
     <description>COM_RESULTSDB_XML_DESCRIPTION</description>
 
     <scriptfile>script.php</scriptfile>

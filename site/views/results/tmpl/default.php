@@ -1,11 +1,12 @@
 <?php
 /**
- * @version    CVS: 1.1.45
+ * @version    CVS: 1.1.47
  * @package    Com_Resultsdb
  * @author     Paul Crean <pecrean@gmail.com>
  * @copyright  2020 Paul Crean
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
-  * PB display added 250121
+  * PB display added 1.1.46 50121
+  * Date added to race description 1.1.47 240221
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -116,7 +117,14 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 
 								<td>
 
-					<?php echo $item->raceid; ?>
+					<?php
+          // prepend date to description of race
+          $date=date_create ($item->date, timezone_open("Europe/Oslo"));
+          $thisdate=date_format($date, "l jS F Y");
+          $racename= $thisdate . " - " . $item->raceid;
+          echo $racename;
+          //echo $item->raceid;
+          ?>
 				</td>
 				<td>
 
