@@ -1,11 +1,12 @@
 <?php
 
 /**
- * @version    CVS: 1.1.35
+ * @version    CVS: 1.1.46
  * @package    Com_Resultsdb
  * @author     Paul Crean <pecrean@gmail.com>
  * @copyright  2020 Paul Crean
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
+ * 230221 - changed getList query to add addintional_info to race desription in query
  */
 
 defined('_JEXEC') or die;
@@ -56,8 +57,8 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 		parent::__construct($config);
 	}
 
-        
-        
+
+
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -75,7 +76,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app  = Factory::getApplication();
-            
+
 		$list = $app->getUserState($this->context . '.list');
 
 		$ordering  = isset($list['filter_order'])     ? $list['filter_order']     : null;
@@ -105,8 +106,8 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 
 		$app->setUserState($this->context . '.list', $list);
 		$app->input->set('list', null);
-           
-            
+
+
         // List state information.
 
         parent::populateState($ordering, $direction);
@@ -114,7 +115,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
         $context = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
         $this->setState('filter.search', $context);
 
-        
+
 
         // Split context into component and optional section
         $parts = FieldsHelper::extract($context);
@@ -147,7 +148,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
                 );
 
             $query->from('`#__resultsdb_results` AS a');
-            
+
 		// Join over the users for the checked out user.
 		$query->select('uc.name AS uEditor');
 		$query->join('LEFT', '#__users AS uc ON uc.id=a.checked_out');
@@ -157,13 +158,13 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 
 		// Join over the created by field 'modified_by'
 		$query->join('LEFT', '#__users AS modified_by ON modified_by.id = a.modified_by');
-		// Join over the foreign key 'raceid'
-		$query->select('`#__resultsdb_races_3445521`.`description` AS races_fk_value_3445521');
+		// Join over the foreign key 'raceid' & include additional_info field (v1.1.46)
+		$query->select('CONCAT(`#__resultsdb_races_3445521`.`description`, \' \', `#__resultsdb_races_3445521`.`additional_info`) AS races_fk_value_3445521');
 		$query->join('LEFT', '#__resultsdb_races AS #__resultsdb_races_3445521 ON #__resultsdb_races_3445521.`id` = a.`raceid`');
 		// Join over the foreign key 'runner'
 		$query->select('CONCAT(`#__resultsdb_runners_3445522`.`firstname`, \' \', `#__resultsdb_runners_3445522`.`surname`) AS runners_fk_value_3445522');
 		$query->join('LEFT', '#__resultsdb_runners AS #__resultsdb_runners_3445522 ON #__resultsdb_runners_3445522.`id` = a.`runner`');
-            
+
 		if (!Factory::getUser()->authorise('core.edit', 'com_resultsdb'))
 		{
 			$query->where('a.state = 1');
@@ -188,7 +189,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 					$query->where('(#__resultsdb_races_3445521.description LIKE ' . $search . '  OR CONCAT(`#__resultsdb_runners_3445522`.`firstname`, \' \', `#__resultsdb_runners_3445522`.`surname`) LIKE ' . $search . ' )');
                 }
             }
-            
+
 
 		// Filtering runner
 		$filter_runner = $this->state->get("filter.runner");
@@ -198,8 +199,8 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 			$query->where("FIND_IN_SET('" . $db->escape($filter_runner) . "',a.runner)");
 		}
 
-            
-            
+
+
             // Add the list ordering clause.
             $orderCol  = $this->state->get('list.ordering', 'date');
             $orderDirn = $this->state->get('list.direction', 'DESC');
@@ -220,7 +221,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 	public function getItems()
 	{
 		$items = parent::getItems();
-		
+
 		foreach ($items as $item)
 		{
 
@@ -235,7 +236,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 					$db    = JFactory::getDbo();
 					$query = $db->getQuery(true);
 					$query
-						->select('`#__resultsdb_races_3445521`.`description`')
+						->select('CONCAT(`#__resultsdb_races_3445521`.`description`, \' \', `#__resultsdb_races_3445521`.`additional_info`) AS `fk_value`')
 						->from($db->quoteName('#__resultsdb_races', '#__resultsdb_races_3445521'))
 						->where($db->quoteName('#__resultsdb_races_3445521.id') . ' = '. $db->quote($db->escape($value)));
 
@@ -244,7 +245,7 @@ class ResultsdbModelResults extends \Joomla\CMS\MVC\Model\ListModel
 
 					if ($results)
 					{
-						$textValue[] = $results->description;
+						$textValue[] = $results->fk_value;
 					}
 				}
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
     <name>com_resultsdb</name>
-    <creationDate>2020-10-22</creationDate>
+    <creationDate>2021-02-23</creationDate>
     <copyright>2020 Paul Crean</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <author>Paul Crean</author>
     <authorEmail>pecrean@gmail.com</authorEmail>
     <authorUrl>http://</authorUrl>
-    <version>CVS: 1.1.45</version>
+    <version>CVS: 1.1.46</version>
     <description>COM_RESULTSDB_XML_DESCRIPTION</description>
 
     <scriptfile>script.php</scriptfile>
