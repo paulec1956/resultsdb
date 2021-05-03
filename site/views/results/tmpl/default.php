@@ -7,6 +7,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
   * PB display added 1.1.46 50121
   * Date added to race description 1.1.47 240221
+  * Date column removed 1.1.48 240221
  */
 // No direct access
 defined('_JEXEC') or die;
@@ -55,13 +56,14 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 			<?php if (isset($this->items[0]->state)): ?>
 
 			<?php endif; ?>
+      <th class=''>
+      <?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_DATE', 'a.date', $listDirn, $listOrder); ?>
+      </th>
 
 							<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_RACEID', 'a.raceid', $listDirn, $listOrder); ?>
 				</th>
-				<th class=''>
-				<?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_DATE', 'a.date', $listDirn, $listOrder); ?>
-				</th>
+
 				<th class=''>
 				<?php echo JHtml::_('grid.sort',  'COM_RESULTSDB_RESULTS_RUNNER', 'a.runner', $listDirn, $listOrder); ?>
 				</th>
@@ -101,41 +103,50 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 		</tr>
 		</tfoot>
 		<tbody>
+    <?php $thisrace = " ";
+    $showrace=true; ?>
 		<?php foreach ($this->items as $i => $item) : ?>
 			<?php $canEdit = $user->authorise('core.edit', 'com_resultsdb'); ?>
 
-							<?php if (!$canEdit && $user->authorise('core.edit.own', 'com_resultsdb')): ?>
+					<?php if (!$canEdit && $user->authorise('core.edit.own', 'com_resultsdb')): ?>
 					<?php $canEdit = JFactory::getUser()->id == $item->created_by; ?>
-				<?php endif; ?>
+				  <?php endif; ?>
 
-			<tr class="row<?php echo $i % 2; ?>">
+			    <tr class="row<?php echo $i % 2; ?>">
 
-				<?php if (isset($this->items[0]->state)) : ?>
+				  <?php if (isset($this->items[0]->state)) : ?>
 					<?php $class = ($canChange) ? 'active' : 'disabled'; ?>
-
-				<?php endif; ?>
-
-								<td>
-
-					<?php
-          // prepend date to description of race
-          $date=date_create ($item->date, timezone_open("Europe/Oslo"));
-          $thisdate=date_format($date, "l jS F Y");
-          $racename= $thisdate . " - " . $item->raceid;
-          echo $racename;
-          //echo $item->raceid;
+				  <?php endif; ?>
+          <td>
+          <?php
+            // format date and check if race details to be register_shutdown_function
+            if ($thisrace != $item->raceid) // new race?
+            {
+              $thisrace = $item->raceid;
+              $showrace = true;
+            } else
+            {
+              $showrace = false;
+            }
+            $date=date_create ($item->date, timezone_open("Europe/Oslo"));
+            $thisdate=date_format($date, "l jS F Y");
+            //$racename= $thisdate . " - " . $item->raceid;
+            //$date = $item->date;
+            if ($showrace == true)
+              echo $thisdate;
+            //echo $date > 0 ? JHtml::_('date', $thisdate, JText::_('DATE_FORMAT_LC4')) : '-';
           ?>
-				</td>
-				<td>
-
+          </td>
+          <td >
 					<?php
-					$date = $item->date;
-					echo $date > 0 ? JHtml::_('date', $date, JText::_('DATE_FORMAT_LC4')) : '-';
-					?>				</td>
-				<td>
-
-					<?php echo $item->runner; ?>
-				</td>
+          //echo $racename;
+          if ($showrace == true)
+            echo $item->raceid;
+          ?>
+				  </td>
+          <td>
+				  <?php echo $item->runner; ?>
+				  </td>
 				<td>
 
 					<?php echo $item->position; ?>
@@ -165,7 +176,7 @@ $document->addStyleSheet(Uri::root() . 'media/com_resultsdb/css/list.css');
 				</td>
 
 
-								<?php if ($canEdit || $canDelete): ?>
+					<?php if ($canEdit || $canDelete): ?>
 					<td class="center">
 						<?php if ($canEdit): ?>
 							<a href="<?php echo JRoute::_('index.php?option=com_resultsdb&task=result.edit&id=' . $item->id, false, 2); ?>" class="btn btn-mini" type="button"><i class="icon-edit" ></i></a>

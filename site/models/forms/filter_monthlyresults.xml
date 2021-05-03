@@ -4,7 +4,7 @@
     <field name="search" type="text" hint="COM_RESULTSDB_SEARCH_FILTER_SUBMIT"
                label="COM_USERS_FILTER_SEARCH_DESC"
                class="js-stools-search-string" />
-               
+
        <field name="month" type="list" default="Choose a month" label="Select an month" description="choose the month">
   <option value="">Please select the month</option>
   <option value="01">January</option>
@@ -23,6 +23,7 @@
 
 <field name="year" type="list" default="Choose a year" label="Select a year" description="choose the year">
   <option value="">Please select the year</option>
+<option value="2021">2021</option>
   <option value="2020">2020</option>
   <option value="2019">2019</option>
   <option value="2018">2018</option>
@@ -47,7 +48,7 @@
   <option value="1999">1999</option>
 </field>
 
-       
+
 
     </fields>
 </form>
